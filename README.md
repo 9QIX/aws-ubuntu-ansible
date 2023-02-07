@@ -194,7 +194,7 @@ server {
 > ansible-playbook -i ./inventory/hosts ./playbooks/apt.yml -u ubuntu
 ```
 ![Step 12:](./steps-images/others-steps/21.png)
-**Note: ideally, your output should look the same as the image above**
+*Note: ideally, your output should look the same as the image above*
 ---
 ## Step 13: Test your sites by using the public IPv4 addresses of your server machines.
 - **For ansible-server1**
