@@ -157,17 +157,20 @@ sudo apt install net-tools
 > cd /var/www/
 > sudo curl -L https://github.com/do-community/html_demo_site/archive/refs/heads/main.zip -o html_demo.zip
 ```
-- **Download the unzip file to extract zip content**
+![Step 10:](./steps-images/others-steps/others-others/1.png)
+- **Download the unzip app to extract zip content**
 ```bash
 > sudo apt install unzip -y
 > unzip html_demo.zip
 ```
+![Step 10.2:](./steps-images/others-steps/others-others/2.png)
 ---
 ## Step 11: Create a template for nginx's configuration.
 ```bash
 > cd /var/www
-> vi nginx.conf.j2
+> sudo vi nginx.conf.j2
 ```
+![Step 10.2:](./steps-images/others-steps/others-others/3.png)
 - **Paste nginx's configuration below**
 ```j2
 server {
