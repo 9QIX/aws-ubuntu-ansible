@@ -46,4 +46,21 @@ sudo apt install ansible -y
 ansible --version
 ```
 ![Step 5:](./steps-images/others-steps/5.png)
-## Create a hosts file and input the servers that to be automated.
+## Step 6: Create a hosts file and input the servers' IP addresses that to be automated.
+- **Grab your servers' IP addresses**
+```bash
+sudo apt install net-tools
+ifconfig
+```
+![Step 6.3:](./steps-images/others-steps/8.png)
+- **Create a directory for your hosts file**
+```bash
+mkdir inventory
+```
+![Step 6:](./steps-images/others-steps/6.png)
+- **Paste gathered IP addresses in your hosts file**
+```bash
+vi ihosts
+```
+![Step 6.2:](./steps-images/others-steps/7.png)
+![Step 6.2:](./steps-images/others-steps/9.png)
