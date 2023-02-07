@@ -15,52 +15,74 @@ Ansible is an open-source configuration management and application deployment to
 ![Step 3.1:](./steps-images/6.png)
 - **Ensure that your key is not publicly available by modifying its permissions**
 ```bash
-chmod 400 "SSHkey".pem
+> chmod 400 "SSHkey".pem
 ```
 ![Step 3.2:](./steps-images/7.png)
 - **Connect through your instances using SSH**
 ```bash
-ssh -i "SSHkey"" ubuntu@ec2-13-250-103-32.ap-southeast-1.compute.amazonaws.com
+> ssh -i "SSHkey"" ubuntu@ec2-13-250-103-32.ap-southeast-1.compute.amazonaws.com
 ```
 ![Step 3.3:](./steps-images/8.png)
 ---
 ## Step 4: In your main Ansible machine, update the system and install needed dependencies.
 ```bash
-sudo apt update
+> sudo apt update
 ```
 ![Step 4:](./steps-images/others-steps/1.png)
 ```bash
-sudo apt install software-properties-common
+> sudo apt install software-properties-common
 ```
 ![Step 4.2:](./steps-images/others-steps/2.png)
 ```bash
-sudo apt-add-repository --yes --update ppa:ansible/ansible
+> sudo apt-add-repository --yes --update ppa:ansible/ansible
 ```
 ![Step 4.3:](./steps-images/others-steps/3.png)
+---
 ## Step 5: Install Ansible in your main machine and check its version for verification.
 ```bash
-sudo apt install ansible -y
+> sudo apt install ansible -y
 ```
 ![Step 5:](./steps-images/others-steps/4.png)
 ```bash
-ansible --version
+> ansible --version
 ```
 ![Step 5:](./steps-images/others-steps/5.png)
+---
 ## Step 6: Create a hosts file and input the servers' IP addresses that to be automated.
 - **Grab your servers' IP addresses**
 ```bash
 sudo apt install net-tools
-ifconfig
+> ifconfig
 ```
 ![Step 6.3:](./steps-images/others-steps/8.png)
 - **Create a directory for your hosts file**
 ```bash
-mkdir inventory
+> mkdir inventory
 ```
 ![Step 6:](./steps-images/others-steps/6.png)
 - **Paste gathered IP addresses in your hosts file**
 ```bash
-vi ihosts
+> vi ihosts
 ```
 ![Step 6.2:](./steps-images/others-steps/7.png)
 ![Step 6.2:](./steps-images/others-steps/9.png)
+---
+## Step 7: Authorize the servers' by generating SSH key.
+- **From your main machine, generate SSH key**
+```bash
+> ssh-keygen -t rsa -b 2046
+```
+![Step 7:](./steps-images/others-steps/10.png)
+- **Concatinate and copy the generated key**
+```bash
+> cd /home/ubuntu/.ssh/
+> cat id_rsa.pub
+```
+![Step 7.2:](./steps-images/others-steps/11.png)
+- **Paste copied generated key to authorized_keys in your server machines**
+```bash
+> cd .ssh
+> vi authorized_keys
+```
+![Step 7.3:](./steps-images/others-steps/12.png)
+![Step 7.4:](./steps-images/others-steps/13.png)
