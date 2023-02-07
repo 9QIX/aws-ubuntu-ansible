@@ -170,7 +170,7 @@ sudo apt install net-tools
 > cd /var/www
 > sudo vi nginx.conf.j2
 ```
-![Step 10.2:](./steps-images/others-steps/others-others/3.png)
+![Step 11:](./steps-images/others-steps/others-others/3.png)
 - **Paste nginx's configuration below**
 ```j2
 server {
@@ -187,4 +187,19 @@ server {
   }
 }
 ```
-![Step 10:](./steps-images/others-steps/20.png)
+![Step 11.2:](./steps-images/others-steps/20.png)
+---
+## Step 12: Execute playbook.
+```bash
+> ansible-playbook -i ./inventory/hosts ./playbooks/apt.yml -u ubuntu
+```
+![Step 12:](./steps-images/others-steps/21.png)
+**Note: ideally, your output should look the same as the image above**
+---
+## Step 13: Test your sites by using the public IPv4 addresses of your server machines.
+- **For ansible-server1**
+![Step 13:](./steps-images/others-steps/22.png)
+- **For ansible-server2**
+![Step 13.2:](./steps-images/others-steps/23.png)
+- **For ansible-server3**
+![Step 13.3:](./steps-images/others-steps/24.png)
