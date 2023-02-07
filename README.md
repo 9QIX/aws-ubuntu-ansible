@@ -8,6 +8,7 @@ Ansible is an open-source configuration management and application deployment to
 ![Step 2:](./steps-images/2.png)
 ![Step 2.1:](./steps-images/3.png)
 ![Step 2.2:](./steps-images/4.png)
+![Step 2.3:](./steps-images/0.png)
 ---
 ## Step 3: Connect to your instaces.
 ![Step 3:](./steps-images/5.png)
@@ -86,3 +87,101 @@ sudo apt install net-tools
 ```
 ![Step 7.3:](./steps-images/others-steps/12.png)
 ![Step 7.4:](./steps-images/others-steps/13.png)
+---
+## Step 8: Test the servers by passing the desired group name and using ping module.
+```bash
+> ansible -i ./inventory/hosts ubuntu-server -m ping
+```
+![Step 8:](./steps-images/others-steps/14.png)
+---
+## Step 9: Create a playbook (.yml).
+- **Create directory for your playbook**
+```bash
+> mkdir playbooks/
+> cd playbooks/
+> nvim apt.yml
+```
+![Step 9:](./steps-images/others-steps/15.png)
+- **Paste the commands below or you can write your own**
+```yml
+---
+- hosts: all
+  become: yes
+  vars:
+    server_name: "{{ ansible_default_ipv4.address }}"
+    document_root: /var/www
+    app_root: /var/www/
+  tasks:
+    - name: Update apt cache and install Nginx
+      apt:
+        name: nginx
+        state: latest
+        update_cache: yes
+
+    - name: Copy website files to the server's document root
+      copy:
+        src: "{{ app_root }}"
+        dest: "{{ document_root }}"
+        mode: preserve
+
+    - name: Apply Nginx template
+      template:
+        src: /var/www/nginx.conf.j2
+        dest: /etc/nginx/sites-available/default
+      notify: Restart Nginx
+
+    - name: Enable new site
+      file:
+        src: /etc/nginx/sites-available/default
+        dest: /etc/nginx/sites-enabled/default
+        state: link
+      notify: Restart Nginx
+
+    - name: Allow all access to tcp port 80
+      ufw:
+        rule: allow
+        port: '80'
+        proto: tcp
+
+  handlers:
+    - name: Restart Nginx
+      service:
+        name: nginx
+        state: restarted
+```
+![Step 9.2:](./steps-images/others-steps/16.png)
+---
+## Step 10: Obtain and unzip demo website.
+- **Download the demo website**
+```bash
+> cd /var/www/
+> sudo curl -L https://github.com/do-community/html_demo_site/archive/refs/heads/main.zip -o html_demo.zip
+```
+- **Download the unzip file to extract zip content**
+```bash
+> sudo apt install unzip -y
+> unzip html_demo.zip
+```
+---
+## Step 11: Create a template for nginx's configuration.
+```bash
+> cd /var/www
+> vi nginx.conf.j2
+```
+- **Paste nginx's configuration below**
+```j2
+server {
+  listen 80;
+
+  root {{ document_root }}/{{ app_root }};
+  index index.html index.htm;
+
+  server_name {{ server_name }};
+  
+  location / {
+   default_type "text/html";
+   try_files $uri.html $uri $uri/ =404;
+  }
+}
+```
+![Step 10:](./steps-images/others-steps/20.png)
