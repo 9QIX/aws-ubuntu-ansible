@@ -99,7 +99,7 @@ Ansible is an open-source configuration management and application deployment to
 ```bash
 > mkdir playbooks/
 > cd playbooks/
-> nvim apt.yml
+> vim apt.yml
 ```
 ![Step 9:](./steps-images/others-steps/15.png)
 - **Paste the commands below or you can write your own**
