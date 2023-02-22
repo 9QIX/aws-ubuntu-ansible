@@ -52,7 +52,7 @@ Ansible is an open-source configuration management and application deployment to
 ## Step 6: Create a hosts file and input the servers' IP addresses that to be automated.
 - **Grab your servers' IP addresses**
 ```bash
-sudo apt install net-tools
+> sudo apt install net-tools
 > ifconfig
 ```
 ![Step 6.3:](./steps-images/others-steps/8.png)
