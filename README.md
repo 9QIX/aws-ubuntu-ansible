@@ -63,7 +63,7 @@ Ansible is an open-source configuration management and application deployment to
 ![Step 6:](./steps-images/others-steps/6.png)
 - **Paste gathered IP addresses in your hosts file**
 ```bash
-> vi ihosts
+> vi hosts
 ```
 ![Step 6.2:](./steps-images/others-steps/7.png)
 ![Step 6.2:](./steps-images/others-steps/9.png)
