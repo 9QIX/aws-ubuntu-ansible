@@ -227,14 +227,12 @@ server {
 ## Step 12: Execute the Ansible Playbook
 ```bash
 > ansible-playbook -i ./inventory/hosts ./playbooks/apt.yml -u ubuntu
-``
+```
 
-`
 ![Step 12:](./steps-images/others-steps/21.png)
 
 *Note: Your output should ideally resemble the image above.*
 
----
 
 ## Step 13: Test Your Deployed Websites
 - **For ansible-server1**
