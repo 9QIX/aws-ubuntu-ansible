@@ -1,16 +1,16 @@
-# How To Deploy a Static HTML Website with Ansible on AWS Ubuntu
+# To Deploy a Static HTML Website with Ansible on AWS Ubuntu
 Ansible is an open-source configuration management and application deployment tool. It helps to reduce managerial overhead by automating the deployment of the app and managing IT infrastructure.
 
 ## Step 1: Go to EC2 in your AWS Console.
 ![Step 1:](./steps-images/1.png)
 ---
-## Step 2: Create 4 instances (one for your main Ansible machine and 3 for your servers that you want to be automated).
+## Step 2: Create 4 instances (one for your main Ansible machine and 3 for the servers that you want to be automated).
 ![Step 2:](./steps-images/2.png)
 ![Step 2.1:](./steps-images/3.png)
 ![Step 2.2:](./steps-images/4.png)
 ![Step 2.3:](./steps-images/0.png)
 ---
-## Step 3: Connect to your instaces.
+## Step 3: Connect to your instances.
 ![Step 3:](./steps-images/5.png)
 - **Download your SSH key**
 ![Step 3.1:](./steps-images/6.png)
@@ -25,7 +25,7 @@ Ansible is an open-source configuration management and application deployment to
 ```
 ![Step 3.3:](./steps-images/8.png)
 ---
-## Step 4: In your main Ansible machine, update the system and install needed dependencies.
+## Step 4: In your main Ansible machine, update the system and install the needed dependencies.
 ```bash
 > sudo apt update
 ```
@@ -39,7 +39,7 @@ Ansible is an open-source configuration management and application deployment to
 ```
 ![Step 4.3:](./steps-images/others-steps/3.png)
 ---
-## Step 5: Install Ansible in your main machine and check its version for verification.
+## Step 5: Install Ansible on your main machine and check its version for verification.
 ```bash
 > sudo apt install ansible -y
 ```
@@ -49,32 +49,32 @@ Ansible is an open-source configuration management and application deployment to
 ```
 ![Step 5:](./steps-images/others-steps/5.png)
 ---
-## Step 6: Create a hosts file and input the servers' IP addresses that to be automated.
+## Step 6: Create a host file and input the servers' IP addresses that are to be automated.
 - **Grab your servers' IP addresses**
 ```bash
 > sudo apt install net-tools
 > ifconfig
 ```
 ![Step 6.3:](./steps-images/others-steps/8.png)
-- **Create a directory for your hosts file**
+- **Create a directory for your host file**
 ```bash
 > mkdir inventory
 ```
 ![Step 6:](./steps-images/others-steps/6.png)
-- **Paste gathered IP addresses in your hosts file**
+- **Paste gathered IP addresses in your host file**
 ```bash
 > vi hosts
 ```
 ![Step 6.2:](./steps-images/others-steps/7.png)
 ![Step 6.2:](./steps-images/others-steps/9.png)
 ---
-## Step 7: Authorize the servers' by generating SSH key.
+## Step 7: Authorize the servers by generating an SSH key.
 - **From your main machine, generate SSH key**
 ```bash
 > ssh-keygen -t rsa -b 2046
 ```
 ![Step 7:](./steps-images/others-steps/10.png)
-- **Concatinate and copy the generated key**
+- **Concatenate and copy the generated key**
 ```bash
 > cd /home/ubuntu/.ssh/
 > cat id_rsa.pub
@@ -88,14 +88,14 @@ Ansible is an open-source configuration management and application deployment to
 ![Step 7.3:](./steps-images/others-steps/12.png)
 ![Step 7.4:](./steps-images/others-steps/13.png)
 ---
-## Step 8: Test the servers by passing the desired group name and using ping module.
+## Step 8: Test the servers by passing the desired group name and using the ping module.
 ```bash
 > ansible -i ./inventory/hosts ubuntu-server -m ping
 ```
 ![Step 8:](./steps-images/others-steps/14.png)
 ---
 ## Step 9: Create a playbook (.yml).
-- **Create directory for your playbook**
+- **Create a directory for your playbook**
 ```bash
 > mkdir playbooks/
 > cd playbooks/
@@ -171,7 +171,7 @@ Ansible is an open-source configuration management and application deployment to
 > sudo vi nginx.conf.j2
 ```
 ![Step 11:](./steps-images/others-steps/others-others/3.png)
-- **Paste nginx's configuration below**
+- **Paste Nginx's configuration below**
 ```j2
 server {
   listen 80;
